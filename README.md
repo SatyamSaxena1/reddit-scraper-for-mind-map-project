@@ -51,17 +51,3 @@ Notes
 Security / secrets
 - Do NOT put your `client_id` or `client_secret` into the repository. Use environment variables (recommended) or a local secrets file excluded by `.gitignore`.
 
-Publishing to GitHub
-1. Create a new repository on GitHub (do not initialize with README/license).
-2. In your local repo folder run:
-
-```powershell
-git init
-git add .
-git commit -m "Initial commit: reddit saved posts scraper"
-git branch -M main
-git remote add origin https://github.com/<your-username>/<your-repo>.git
-git push -u origin main
-```
-
-I'll add a recommended minimal CI workflow and contributing guide in the repo to make it easier for others to use.
