@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+*.env
+.env
+output/
+output/*
+errors.log
+*.pyc
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/

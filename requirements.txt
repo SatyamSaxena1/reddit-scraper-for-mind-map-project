@@ -1,0 +1,4 @@
+praw
+fastapi
+requests
+uvicorn
