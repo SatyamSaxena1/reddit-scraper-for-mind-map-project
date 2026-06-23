@@ -5,4 +5,4 @@ Write-Host "Activating venv..."
 & "$venv\Scripts\Activate.ps1"
 Write-Host "Installing requirements..."
 python -m pip install -r requirements.txt
-Write-Host "Done. Activate the venv with: & .\\.venv\\Scripts\\Activate.ps1"}
+Write-Host "Done. Activate the venv with: & .\\.venv\\Scripts\\Activate.ps1"

@@ -1,0 +1,48 @@
+{
+  "nodes": [
+    {
+      "id": "reddit-post-abc123-useful-llm-paper-discussion",
+      "label": "Useful LLM paper discussion",
+      "type": "post",
+      "path": "Posts/reddit-post-abc123-useful-llm-paper-discussion.md"
+    },
+    {
+      "id": "subreddit - MachineLearning",
+      "label": "subreddit - MachineLearning",
+      "type": "subreddit",
+      "path": "Subreddits/subreddit - MachineLearning.md"
+    },
+    {
+      "id": "reddit user - example_author",
+      "label": "reddit user - example_author",
+      "type": "author",
+      "path": "Authors/reddit user - example_author.md"
+    },
+    {
+      "id": "topic - embeddings",
+      "label": "topic - embeddings",
+      "type": "topic",
+      "path": "Topics/topic - embeddings.md"
+    }
+  ],
+  "edges": [
+    {
+      "id": "post-sub",
+      "source": "reddit-post-abc123-useful-llm-paper-discussion",
+      "target": "subreddit - MachineLearning",
+      "type": "posted_in"
+    },
+    {
+      "id": "post-author",
+      "source": "reddit-post-abc123-useful-llm-paper-discussion",
+      "target": "reddit user - example_author",
+      "type": "authored_by"
+    },
+    {
+      "id": "post-topic",
+      "source": "reddit-post-abc123-useful-llm-paper-discussion",
+      "target": "topic - embeddings",
+      "type": "tagged_topic"
+    }
+  ]
+}

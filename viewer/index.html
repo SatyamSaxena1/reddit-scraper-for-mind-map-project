@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reddit Mind Map</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="graph-shell">
+    <aside class="side-panel">
+      <div class="dev-warning" role="status">
+        <strong>Under development</strong>
+        <span>Local-first prototype. Do not paste tokens into this page.</span>
+      </div>
+
+      <div class="brand">
+        <span>RM</span>
+        <div>
+          <h1>Reddit Mind Map</h1>
+          <p>Obsidian graph export</p>
+        </div>
+      </div>
+
+      <label class="search-box">
+        <span>Search</span>
+        <input id="search" type="search" placeholder="post, topic, author...">
+      </label>
+
+      <section class="filters" aria-label="Node filters">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="post">Posts</button>
+        <button type="button" data-filter="topic">Topics</button>
+        <button type="button" data-filter="subreddit">Subreddits</button>
+        <button type="button" data-filter="author">Authors</button>
+      </section>
+
+      <section class="stats" aria-live="polite">
+        <span><strong id="node-count">0</strong> nodes</span>
+        <span><strong id="edge-count">0</strong> links</span>
+      </section>
+
+      <section class="details" id="details">
+        <p class="eyebrow">Selection</p>
+        <h2>Choose a node</h2>
+        <p>Node details will appear here.</p>
+      </section>
+    </aside>
+
+    <section class="graph-stage" aria-label="Interactive knowledge graph">
+      <section class="guide-panel" aria-label="Saved data extraction guide">
+        <div class="guide-heading">
+          <p class="eyebrow">Extract saved data</p>
+          <h2>Reddit OAuth guide</h2>
+        </div>
+        <div class="guide-grid">
+          <label>
+            <span>Client ID</span>
+            <input id="guide-client-id" type="text" placeholder="installed app client id">
+          </label>
+          <label>
+            <span>Saved CSV/JSON</span>
+            <input id="guide-saved-file" type="text" value="data\saved_posts.csv">
+          </label>
+          <label>
+            <span>Limit</span>
+            <input id="guide-limit" type="number" min="1" value="25">
+          </label>
+        </div>
+        <ol class="guide-steps">
+          <li>Create a Reddit app at <a href="https://www.reddit.com/prefs/apps" target="_blank" rel="noreferrer">reddit.com/prefs/apps</a>.</li>
+          <li>Choose <strong>installed app</strong>, set redirect URI to <code>http://localhost:8080/authorize_callback</code>, and keep the secret blank.</li>
+          <li>Run the generated PowerShell commands locally. The progress bar appears while saved posts are extracted.</li>
+        </ol>
+        <pre id="guide-command" aria-live="polite"></pre>
+        <div class="extract-progress" aria-label="Extraction progress preview">
+          <span id="progress-fill"></span>
+        </div>
+        <p class="progress-label" id="progress-label">Preview: 0 of 25 saved posts</p>
+      </section>
+      <div id="graph"></div>
+      <div class="toolbar">
+        <button id="fit" type="button" title="Fit graph">Fit</button>
+        <button id="reset" type="button" title="Reset filters">Reset</button>
+      </div>
+      <p class="load-state" id="load-state">Loading graph</p>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/cytoscape@3.31.2/dist/cytoscape.min.js"></script>
+  <script src="graph-viewer.js"></script>
+</body>
+</html>

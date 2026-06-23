@@ -1,0 +1,11 @@
+name: reddit-mindmap-viewer
+static_sites:
+  - name: graph-viewer
+    github:
+      repo: SatyamSaxena1/reddit-scraper-for-mind-map-project
+      branch: main
+      deploy_on_push: true
+    source_dir: viewer
+    output_dir: /
+    index_document: index.html
+    catchall_document: index.html

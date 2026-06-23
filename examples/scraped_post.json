@@ -1,0 +1,24 @@
+{
+  "id": "abc123",
+  "permalink": "/r/MachineLearning/comments/abc123/example_saved_post/",
+  "title": "Useful LLM paper discussion",
+  "selftext": "A saved discussion about retrieval, embeddings, and evaluation.",
+  "author": "example_author",
+  "score": 42,
+  "subreddit": "MachineLearning",
+  "url": "https://example.com/paper",
+  "domain": "example.com",
+  "created_utc": 1710000000,
+  "comments": [
+    {
+      "id": "c1",
+      "author": "commenter",
+      "body": "This connects well with vector search.",
+      "score": 5,
+      "created_utc": 1710000100,
+      "permalink": "https://www.reddit.com/r/MachineLearning/comments/abc123/comment/c1/"
+    }
+  ],
+  "media": [],
+  "fetched_at": "Mon Jan 01 00:00:00 2026"
+}

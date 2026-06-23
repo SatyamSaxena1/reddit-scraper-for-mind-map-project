@@ -5,6 +5,8 @@ __pycache__/
 .env
 output/
 output/*
+vaults/
+viewer/data/graph.json
 errors.log
 *.pyc
 
