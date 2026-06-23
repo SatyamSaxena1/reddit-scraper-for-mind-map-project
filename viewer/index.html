@@ -53,10 +53,14 @@
           <p class="eyebrow">Extract saved data</p>
           <h2>Reddit OAuth guide</h2>
         </div>
+        <div class="app-type" aria-label="Reddit app type">
+          <button type="button" data-app-type="installed" aria-pressed="true">Installed app</button>
+          <button type="button" data-app-type="web">Web app</button>
+        </div>
         <div class="guide-grid">
           <label>
             <span>Client ID</span>
-            <input id="guide-client-id" type="text" placeholder="installed app client id">
+            <input id="guide-client-id" type="text" placeholder="reddit app client id">
           </label>
           <label>
             <span>Saved CSV/JSON</span>
@@ -69,9 +73,10 @@
         </div>
         <ol class="guide-steps">
           <li>Create a Reddit app at <a href="https://www.reddit.com/prefs/apps" target="_blank" rel="noreferrer">reddit.com/prefs/apps</a>.</li>
-          <li>Choose <strong>installed app</strong>, set redirect URI to <code>http://localhost:8080/authorize_callback</code>, and keep the secret blank.</li>
+          <li id="app-type-step">Choose <strong>installed app</strong>, set redirect URI to <code>http://localhost:8080/authorize_callback</code>, and keep the secret blank.</li>
           <li>Run the generated PowerShell commands locally. The progress bar appears while saved posts are extracted.</li>
         </ol>
+        <dl class="reddit-fields" id="reddit-fields"></dl>
         <pre id="guide-command" aria-live="polite"></pre>
         <div class="extract-progress" aria-label="Extraction progress preview">
           <span id="progress-fill"></span>

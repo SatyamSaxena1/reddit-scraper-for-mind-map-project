@@ -11,6 +11,9 @@ const guideLimit = document.querySelector('#guide-limit');
 const guideCommand = document.querySelector('#guide-command');
 const progressFill = document.querySelector('#progress-fill');
 const progressLabel = document.querySelector('#progress-label');
+const appTypeButtons = [...document.querySelectorAll('[data-app-type]')];
+const appTypeStep = document.querySelector('#app-type-step');
+const redditFields = document.querySelector('#reddit-fields');
 
 const colors = {
   post: '#e5b84b',
@@ -25,15 +28,28 @@ const colors = {
 
 let cy;
 let activeFilter = 'all';
+let activeAppType = 'installed';
 
 function updateGuide() {
-  const clientId = guideClientId.value.trim() || '<your_installed_app_client_id>';
+  const isWeb = activeAppType === 'web';
+  const clientId = guideClientId.value.trim() || (isWeb ? '<your_web_app_client_id>' : '<your_installed_app_client_id>');
   const savedFile = guideSavedFile.value.trim() || 'data\\saved_posts.csv';
   const limit = Math.max(1, Number(guideLimit.value || 25));
   const previewDone = Math.max(1, Math.ceil(limit * .36));
+  const secretValue = isWeb ? '<your_web_app_client_secret>' : '';
+  appTypeStep.innerHTML = isWeb
+    ? 'Choose <strong>web app</strong>, set redirect URI to <code>http://localhost:8080/authorize_callback</code>, then put the secret only in your local terminal.'
+    : 'Choose <strong>installed app</strong>, set redirect URI to <code>http://localhost:8080/authorize_callback</code>, and keep the secret blank.';
+  redditFields.innerHTML = [
+    ['Name', 'reddit-mindmap-local'],
+    ['Type', isWeb ? 'web app' : 'installed app'],
+    ['Description', 'Local Reddit saved-post export into Obsidian notes.'],
+    ['About URL', 'https://reddit-mindmap-viewer-ji7ub.ondigitalocean.app'],
+    ['Redirect URI', 'http://localhost:8080/authorize_callback']
+  ].map(([label, value]) => `<dt>${label}</dt><dd>${value}</dd>`).join('');
   guideCommand.textContent = [
     `$env:REDDIT_CLIENT_ID='${clientId}'`,
-    `$env:REDDIT_CLIENT_SECRET=''`,
+    `$env:REDDIT_CLIENT_SECRET='${secretValue}'`,
     `$env:REDDIT_USER_AGENT='reddit-mindmap/0.1 by your_reddit_username'`,
     `python -m reddit_mindmap scrape --oauth --saved-file "${savedFile}" --output-dir output --limit ${limit}`,
     'python -m reddit_mindmap export-vault --input-dir output --vault-dir vaults\\reddit-mindmap',
@@ -203,4 +219,11 @@ document.querySelector('#reset').addEventListener('click', () => {
 });
 
 [guideClientId, guideSavedFile, guideLimit].forEach((input) => input.addEventListener('input', updateGuide));
+appTypeButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    activeAppType = button.dataset.appType;
+    appTypeButtons.forEach((item) => item.setAttribute('aria-pressed', item === button ? 'true' : 'false'));
+    updateGuide();
+  });
+});
 updateGuide();

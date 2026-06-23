@@ -72,6 +72,8 @@ python -m reddit_mindmap scrape --oauth --saved-file data\saved_posts.csv --outp
 
 The scraper prints a terminal progress bar as saved posts are extracted. Use `--no-progress` to disable it.
 
+For Reddit's `web app` option, use the same redirect URI but set `REDDIT_CLIENT_SECRET` to the web app secret in your local terminal only. Do not paste or commit the secret.
+
 6) Export scraped JSON into an Obsidian vault:
 
 ```powershell
